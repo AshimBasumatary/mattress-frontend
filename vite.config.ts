@@ -51,7 +51,7 @@
     },
     build: {
       target: 'esnext',
-      outDir: 'build',
+      outDir: 'dist',
       chunkSizeWarningLimit: 1000, // increases limit from 500KB to 1MB
     },
     server: {
