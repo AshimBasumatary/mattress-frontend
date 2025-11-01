@@ -52,6 +52,7 @@
     build: {
       target: 'esnext',
       outDir: 'build',
+      chunkSizeWarningLimit: 1000, // increases limit from 500KB to 1MB
     },
     server: {
       port: 3000,
