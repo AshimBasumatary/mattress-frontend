@@ -15,7 +15,7 @@ function App() {
 
   // ✅ Fetch products from backend on load
   useEffect(() => {
-    fetch("http://localhost:5000/api/products")
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/products`)
       .then((res) => res.json())
       .then((data) => {
         console.log("✅ Products loaded from backend:", data);
