@@ -41,7 +41,7 @@ export function AdminPage({ products, onUpdateProducts }: AdminPageProps) {
 
   // Fetch products on load
   useEffect(() => {
-    fetch("http://localhost:5000/api/products")
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/products`)
       .then((res) => res.json())
       .then((data) => {
         console.log("✅ Products loaded from backend:", data);
@@ -70,7 +70,7 @@ export function AdminPage({ products, onUpdateProducts }: AdminPageProps) {
     try {
       console.log("🗑️ Attempting to delete:", id);
 
-      const res = await fetch(`http://localhost:5000/api/products/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/products/${id}`, {
         method: "DELETE",
       });
 
@@ -82,7 +82,7 @@ export function AdminPage({ products, onUpdateProducts }: AdminPageProps) {
       console.log("✅ Product deleted on backend");
 
       // Refresh product list
-      const updatedRes = await fetch("http://localhost:5000/api/products");
+      const updatedRes = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/products`);
       const updatedProducts = await updatedRes.json();
       onUpdateProducts(updatedProducts);
 
@@ -100,8 +100,9 @@ export function AdminPage({ products, onUpdateProducts }: AdminPageProps) {
     try {
       const isEdit = !isAddingNew;
       const apiUrl = isAddingNew
-        ? "http://localhost:5000/api/products"
-        : `http://localhost:5000/api/products/${product._id || product.id}`;
+        ? `${import.meta.env.VITE_API_BASE_URL}/api/products`
+        : `${import.meta.env.VITE_API_BASE_URL}/api/products/${product._id || product.id}`;
+
       const method = isAddingNew ? "POST" : "PUT";
 
       const response = await fetch(apiUrl, {
